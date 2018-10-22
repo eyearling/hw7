@@ -13,7 +13,7 @@ df = pd.read_table('/scratch/psyc5171/dataset1/task-fingerfootlips_events.tsv')
 #df['Time'] = df['Time']/10000.0
 
 groups = df.groupby(df['trial_type'])
-times = groups['Time'].unique() #time in seconds when each block starts
+times = groups['onset'].unique() #time in seconds when each block starts
 
 # save times
 for condition in times.index:
