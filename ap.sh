@@ -4,22 +4,22 @@
 # creation date: Mon Oct  1 23:54:19 2018
 
 # set subject and group identifiers
-set sub j= 02
-set gname = sub-02
+set subj = 02
+set gname = test
 set session = test
 
 # set data directories
-set top_dir = /scratch/psyc5171/dataset1/sub-02/ses-test
+set top_dir = /scratch/psyc5171/dataset1/sub-${subj}/ses-${session}
 set anat_dir = $top_dir/anat
 set epi_dir = $top_dir/func
 
 
 # run afni_proc.py to create a single subject processing script
-afni_proc.py -subj_id sub-02                                                  \
+afni_proc.py -subj_id $subj                                                  \
         -script run_afni.sh -scr_overwrite                                    \
         -blocks tshift align tlrc volreg blur mask scale regress             \
-        -copy_anat $anat_dir/sub-02_ses-test_T1w.nii.gz                          \
-        -dsets $epi_dir/sub-02_ses-test_task-fingerfootlips_run-0*_bold.nii.gz            \
+        -copy_anat $anat_dir/sub-${subj}_ses-${session}_T1w.nii.gz                          \
+        -dsets $epi_dir/sub-${subj}_ses-${session}_task-fingerfootlips_bold.nii.gz            \
         -tcat_remove_first_trs 0   -tshift_opts_ts -tpattern alt+z          \
         -tlrc_base MNI_avg152T1+tlrc                                         \
         -volreg_align_to first                                               \
@@ -31,7 +31,7 @@ afni_proc.py -subj_id sub-02                                                  \
             /scratch/psyc5171/eay15101/hw7/Foot.txt                         \
             /scratch/psyc5171/eay15101/hw7/Lips.txt                       \
         -regress_stim_labels                                                 \
-            Finger Foot Lips Hash Filler                                         \
+            Finger Foot Lips                                         \
         -regress_basis 'BLOCK(15)'                                                 \
         -regress_censor_motion 0.5                                           \
         -regress_apply_mot_types demean deriv                                \

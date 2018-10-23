@@ -9,6 +9,7 @@
 #SBATCH -o output_ap.log				# Standard output
 #SBATCH --job-name=ap			# Descriptive job name
 #SBATCH --partition=serial
+
 module load singularity
 
 # run the afni_proc.py script
